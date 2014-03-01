@@ -1,0 +1,51 @@
+/* Space the content */
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.header, .footer {
+	padding: 0 15px 10px 15px;
+}
+.jumbotron {
+	padding-bottom: 90px;
+	margin-top: 50px;
+}
+
+/* Customize elements */
+.header {
+	border-bottom: 1px solid #e5e5e5;
+}
+.footer {
+	margin-top: 30%;
+	padding-top: 19px;
+	color: #7C6C8D;
+	border-top: 1px solid #e5e5e5;
+}
+.jumbotron h1 {
+	margin-bottom: 20 px;
+}
+.jumbotron .btn {
+	float: left;
+	margin-top: 7px;
+}
+#demo {
+	padding-top: 10px;
+	float: left;
+	color: #7C6C8D;
+}
+#demo p {
+	margin-left: 30px;
+}
+.jumbotron {
+	clear: both;
+}
+.viewMap {
+	margin-left: 40%;
+}
+#map {
+	width: 62%;
+	height: 50%%;
+	position: absolute;
+	margin-top: 1%;
+	visibility: hidden;
+}
