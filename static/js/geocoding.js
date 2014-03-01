@@ -12,7 +12,6 @@ function getLocation() {
     }
     function geo_error() {
       alert("Sorry, no position available.");
-      console.log("Sorry, no position available.");
     }
       navigator.geolocation.getCurrentPosition(geo_success, geo_error);
     }
@@ -23,9 +22,18 @@ function getLocation() {
 }
 
 function showPosition(position) {
-  console.log("Hello");
   //Display the current position
   $('#demo').append("<p>Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude + "</p>");
   }
 
+$(document).ready(function() {
+  //Calling the api to calculate distance on button click
+  $('.btn').on('click', function() {
+    $.getJSON('/api/distance-to-office', {latitude: latitude, longitude: longitude}, function(data){
+    var kilometres = parseFloat(data.distance);
+    var roundedKilometres = Math.round( kilometres * 100 ) / 100;
+    $('#demo').html("<p>You are " + roundedKilometres + "Km from our offices.</p>");
+    });
+  })
+});
