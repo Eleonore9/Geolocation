@@ -3,4 +3,5 @@ Flask-Script==0.6.7
 Flask-WTF==0.8
 Jinja2==2.6
 WTForms==1.0.2
+wsgiref==0.1.2
 Werkzeug==0.8.3
