@@ -1,14 +1,20 @@
+import os, sys
 from flask import Flask, render_template, request
 from test_geocoding import *
 import json
 
 app = Flask(__name__)
 app.secret_key = 'not_a_secret'
+app.config.update(
+	DEBUG = True,
+)
 
+#One page app
 @app.route('/')
 def index():
 	return render_template('index.html')
 
+#To call the api from the client-side using Ajax
 @app.route('/api/distance-to-office')
 def distance():
 	latitude = request.args.get('latitude')
@@ -17,4 +23,5 @@ def distance():
 	return json.dumps({"distance": distance})
 
 if __name__ == '__main__':
-	app.run()
+	port = int(os.environ.get('PORT', 33507))
+	app.run(host='0.0.0.0', port=port)
