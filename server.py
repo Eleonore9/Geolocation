@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os, sys
 from flask import Flask, render_template, request
 from test_geocoding import *
