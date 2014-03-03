@@ -3,6 +3,9 @@ from flask import Flask, render_template, request
 from test_geocoding import *
 import json
 
+#port = int(os.environ.get('PORT', 33507))
+#heroku config:add PORT=33507
+
 app = Flask(__name__)
 app.secret_key = 'not_a_secret'
 app.config.update(
@@ -23,5 +26,5 @@ def distance():
 	return json.dumps({"distance": distance})
 
 if __name__ == '__main__':
-	port = int(os.environ.get('PORT', 33507))
+	port = int(os.environ.get('PORT', 5000))
 	app.run(host='0.0.0.0', port=port)
