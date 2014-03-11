@@ -47,4 +47,5 @@ def distance_on_unit_sphere(lat1, long1, lat2, long2):
 
     return arc * EARTH_RADIUS_IN_KM
 
-#print distance_on_unit_sphere(float(sys.argv[1]), float(sys.argv[2]), OFFICE_LOCATION[0], OFFICE_LOCATION[1])
+if __name__ == '__main__':
+	distance_on_unit_sphere(float(sys.argv[1]), float(sys.argv[2]), OFFICE_LOCATION[0], OFFICE_LOCATION[1])
