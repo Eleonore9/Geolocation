@@ -1,30 +1,32 @@
-function getLocation() { 
+var geo = function () {
+  function getLocation() { 
   //Get localisation from the browser
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(geo_success, geo_error);
-      //InitializeMap;
-      //navigator.geolocation.getCurrentPosition(showPosition);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+        //InitializeMap;
+        //navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else{
+      $('#demo').append("<p>Geolocation is not supported by this browser.</p>");
+    }
   }
-  else{
-    $('#demo').append("<p>Geolocation is not supported by this browser.</p>");
-  }
-}
 
-//Function to to retrieve the position and use it to get the distance
-function geo_success(position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    //Use Ajax to use the api and calculate the distance 
-    $.getJSON('/api/distance-to-office', {latitude: latitude, longitude: longitude}, function(data){
-	$.each(data, function(index, element) { //parse json object to retrieve the data
+  //Function to to retrieve the position and use it to get the distance
+  function geo_success(position) {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      //Use Ajax to use the api and calculate the distance 
+      $.getJSON('/api/distance-to-office', {latitude: latitude, longitude: longitude}, function(data){
+	  $.each(data, function(index, element) { //parse json object to retrieve the data
 		roundedDistance = Math.round(element * 100) / 100; 
 		$('#demo').html("<p> You are " + roundedDistance + " kms away!</p>");
-	});
-    });
-}
-//Function to handle erro of geolocation
-function geo_error() {
-    alert("Sorry, no position available.");
+	  });
+      });
+  }
+  //Function to handle erro of geolocation
+  function geo_error() {
+      alert("Sorry, no position available.");
+  }
 }
 
 //Function to show position on a map
@@ -69,7 +71,7 @@ window.onload = InitializeMap();
 $(document).ready(function() {
   //Calling the api to calculate distance on button click
   $('.jumbotron .btn').on('click', function() {
-  	getLocation();
+  	geo.getLocation();
   	$('.jumbotron .btn').html("Here you go").removeClass('btn-primary').addClass('btn-info');
   });
   $('.viewMap .btn').on('click', function() {
