@@ -13,9 +13,7 @@ def index():
 def distance():
 	latitude = request.args.get('latitude')
 	longitude = request.args.get('longitude')
-	print latitude, ' ', longitude
-	distance = geo.distance_on_unit_sphere(float(latitude), float(longitude), OFFICE_LOCATION[0], OFFICE_LOCATION[1])
-	print distance
+	distance = geo.distance_on_unit_sphere(float(latitude), float(longitude), geo.OFFICE_LOCATION[0], geo.OFFICE_LOCATION[1])
 	return json.dumps({"distance": distance})
 
 if __name__ == '__main__':
