@@ -1,18 +1,18 @@
-var geo = function () {
-  function getLocation() { 
+var geo = {
+  getLocation: function() { 
   //Get localisation from the browser
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+        navigator.geolocation.getCurrentPosition(this.geo_success, this.geo_error);
         //InitializeMap;
         //navigator.geolocation.getCurrentPosition(showPosition);
     }
     else{
       $('#demo').append("<p>Geolocation is not supported by this browser.</p>");
     }
-  }
+  },
 
   //Function to to retrieve the position and use it to get the distance
-  function geo_success(position) {
+  geo_success:function(position) {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
       //Use Ajax to use the api and calculate the distance 
@@ -22,12 +22,12 @@ var geo = function () {
 		$('#demo').html("<p> You are " + roundedDistance + " kms away!</p>");
 	  });
       });
-  }
+  },
   //Function to handle erro of geolocation
-  function geo_error() {
+  geo_error:function() {
       alert("Sorry, no position available.");
   }
-}
+};
 
 //Function to show position on a map
 function InitializeMap() {
