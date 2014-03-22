@@ -2,8 +2,8 @@ import math
 import sys
 
 #Global variables
-#Location of Migreat office
-OFFICE_LOCATION = (51.521328,-0.109799)
+#Coordinates for Paris
+PARIS = (48.856614,2.352222)
 #Conversion rate from degrees to radians
 DEGREES_TO_RADIANS = math.pi/180.0
 #Conversion rate to get the distance in kilometers
@@ -48,4 +48,4 @@ def distance_on_unit_sphere(lat1, long1, lat2, long2):
     return arc * EARTH_RADIUS_IN_KM
 
 if __name__ == '__main__':
-	distance_on_unit_sphere(float(sys.argv[1]), float(sys.argv[2]), OFFICE_LOCATION[0], OFFICE_LOCATION[1])
+	distance_on_unit_sphere(float(sys.argv[1]), float(sys.argv[2]), PARIS[0], PARIS[1])

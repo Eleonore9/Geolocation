@@ -43,7 +43,7 @@ function InitializeMap() {
 		};
 		var locations = [
 			['You are here', latitude, longitude],
-			['Our office', 51.521328, -0.109799]
+			['La plus belle ville du monde!', 48.856614, 2.352222]
 		];
 		var map = new google.maps.Map(document.getElementById("map"), myOptions);
 		var infowindow = new google.maps.InfoWindow();
