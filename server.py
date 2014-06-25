@@ -21,10 +21,12 @@ def index():
 #To call the api from the client-side using Ajax
 @app.route('/api/distance-to-office')
 def distance():
-	latitude = request.args.get('latitude')
-	longitude = request.args.get('longitude')																										
-	distance = distance_on_unit_sphere(float(latitude), float(longitude), OFFICE_LOCATION[0], OFFICE_LOCATION[1])
-	return json.dumps({"distance": distance})
+    latitude = request.args.get('latitude')
+    print 'lat: ', latitude
+    longitude = request.args.get('longitude')
+    print 'long: ', longitude
+    distance = distance_on_unit_sphere(float(latitude), float(longitude), OFFICE_LOCATION[0], OFFICE_LOCATION[1])
+    return json.dumps({"distance": distance})
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))

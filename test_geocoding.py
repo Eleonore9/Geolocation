@@ -2,7 +2,7 @@ import math
 import sys
 
 #Global variables
-#Location of Migreat office
+#Location of their office
 OFFICE_LOCATION = (51.521328,-0.109799)
 #Conversion rate from degrees to radians
 DEGREES_TO_RADIANS = math.pi/180.0

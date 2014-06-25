@@ -16,9 +16,9 @@ function geo_success(position) {
     var longitude = position.coords.longitude;
     //Use Ajax to use the api and calculate the distance 
     $.getJSON('/api/distance-to-office', {latitude: latitude, longitude: longitude}, function(data){
-	$.each(data, function(index, element) { //parse json object to retrieve the data
-		roundedDistance = Math.round(element * 100) / 100; 
-		$('#demo').html("<p> You are " + roundedDistance + " kms away!</p>");
+	    $.each(data, function(index, element) { //parse json object to retrieve the data
+		    roundedDistance = Math.round(element * 100) / 100; 
+		    $('#demo').html("<p> You are " + roundedDistance + " kms away!</p>");
 	});
     });
 }
@@ -29,9 +29,9 @@ function geo_error() {
 
 //Function to show position on a map
 function InitializeMap() {
-        navigator.geolocation.getCurrentPosition(function(position) {
-        	var latitude = position.coords.latitude;
-        	var longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
 		var accuracy = position.coords.accuracy;
 		var latlng = new google.maps.LatLng(latitude, longitude);
 		var myOptions = {
@@ -46,20 +46,32 @@ function InitializeMap() {
 		var map = new google.maps.Map(document.getElementById("map"), myOptions);
 		var infowindow = new google.maps.InfoWindow();
 		var marker, i;
-	    	for (i = 0; i < locations.length; i++) {  
-	      		marker = new google.maps.Marker({
-	          	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-	        	map: map
+	    for (i = 0; i < locations.length; i++) {  
+	      	marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+	        map: map
 	      	});
-	  	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-			return function() {
-		        infowindow.close();
-			infowindow.setContent(locations[i][0]);
+	  	    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			    return function() {
+		            infowindow.close();
+			        infowindow.setContent(locations[i][0]);
 	            	infowindow.open(map, this);
           		}
           	})(marker, i));
-    		}			
-	}, function error(msg){
+        }
+    if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        var markerBounds = new GLatLngBounds();
+        for (var i = 0; i < 10; i++) {
+            var randomPoint = new GLatLng( 39.00 + (Math.random() - 0.5) * 20, 
+                                        -77.00 + (Math.random() - 0.5) * 20);
+            map.addOverlay(new GMarker(randomPoint));
+            markerBounds.extend(randomPoint);
+        }
+        map.setCenter(markerBounds.getCenter(), 
+                    map.getBoundsZoomLevel(markerBounds));					
+	}
+    }, function error(msg){
 		alert('Please enable your GPS position future.');  
 		}, {maximumAge:600000, timeout:5000, enableHighAccuracy: true}
 	);
